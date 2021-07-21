@@ -1,4 +1,6 @@
 import tkinter as tk
+import math
+
 
 window = tk.Tk()
 window.title('BMI App')
@@ -7,11 +9,6 @@ window.configure(background='black')
 
 header_label = tk.Label(window, text='BMI 計算器' , fg='blue' , font='微軟正黑體 16' , bg='black')
 header_label.pack(side='top')
-
-
-sureButton = tk.Button(window , text='確認' , fg='black' , font='微軟正黑體 16' , bg='green')
-sureButton.pack(side='bottom')
-
 
 #體重輸入
 height_frame = tk.Frame(window)
@@ -34,6 +31,23 @@ labelM2.pack(side='left')
 
 enM2 = tk.Entry(weight_frame)
 enM2.pack(side='right')
+
+result_label = tk.Label(window)
+result_label.pack()
+
+
+
+def application():
+    height = float(enM2.get())
+    weight = float(enKg.get())
+    result = round( weight / math.pow(height, 2), 2)
+    result_label.config(text='你的BMI指數為'+str(result))
+
+
+
+sureButton = tk.Button(window , text='確認' , fg='black' , font='微軟正黑體 16' , bg='green' , command=application)
+sureButton.pack(side='bottom')
+
 
 
 # 運行主程式
